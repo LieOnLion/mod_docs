@@ -13,7 +13,6 @@ export default defineConfig({
     'docs/:rest*': ':rest*'
   },
   
-  base: "/mods/",
   cleanUrls: true,
 
   title: "Dynamic Title",
