@@ -1,8 +1,22 @@
-import { defineConfig } from 'vitepress'
+import { defineConfig, useRoute } from 'vitepress'
+import { groupIconMdPlugin, groupIconVitePlugin } from 'vitepress-plugin-group-icons'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "My Awesome Project",
+  markdown: {
+    config(md) {
+      md.use(groupIconMdPlugin)
+    },
+  },
+
+  rewrites: {
+    'docs/:rest*': ':rest*'
+  },
+  
+  base: "/mods",
+  cleanUrls: true,
+
+  title: "Dynamic Title",
   description: "A VitePress Site",
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
@@ -24,5 +38,11 @@ export default defineConfig({
     socialLinks: [
       { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
     ]
+  },
+
+  vite: {
+    plugins: [
+      groupIconVitePlugin()
+    ],
   }
 })
